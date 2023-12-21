@@ -1,0 +1,123 @@
+server:
+  port: 8087
+
+spring:
+  profiles:
+    active: production
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+        type: trace
+        legacy_limit_handler: true
+        proc:
+          param_null_passing: true
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mail:
+    host: smtp.tigo.com.gt
+    port: 25
+    properties:
+      mail:
+        smtp:
+          auth: false
+---
+
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    application:
+      jndi-name: jdbc/integrador-home
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.trace: debug
+    gt.com.tigo: debug
+azure:
+  application:
+    id: 630b2ebb-fcb9-47b7-b8a1-027518bc7154
+    callback-url: http://localhost:3000
+log4j:
+  logger:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: development-alt
+  datasource:
+    application:
+      jndi-name: jdbc/integrador-home
+logging:
+  level:
+    org.hibernate.SQL: debug
+    gt.com.tigo: debug
+azure:
+  application:
+    id: 73893002-7fcb-4735-b02a-627fffe7201b
+    callback-url: http://localhost:3100
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test-remote
+  datasource:
+    application:
+      jndi-name: jdbc/integrador-home
+logging:
+  level:
+    org.hibernate.SQL: debug
+    gt.com.tigo: debug
+azure:
+  application:
+    id: 267c88b5-3fe3-4373-8087-64afd57b5335
+    callback-url: https://corporateappsdev.tigo.com.gt/integrador-home/
+
+---
+
+
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    application:
+      jndi-name: jdbc/integrador-home
+logging:
+  level:
+    org.hibernate.SQL: debug
+    gt.com.tigo: debug
+azure:
+  application:
+    id: 267c88b5-3fe3-4373-8087-64afd57b5335
+    callback-url: https://corporateappsqa.tigo.com.gt/integrador-home/
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    application:
+      jndi-name: jdbc/integrador-home
+logging:
+  level:
+    org.hibernate.SQL: debug
+    gt.com.tigo: debug
+azure:
+  application:
+    id: 267c88b5-3fe3-4373-8087-64afd57b5335
+    callback-url: https://corporateapps.tigo.com.gt/integrador-home/
